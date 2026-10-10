@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XIO | Luxury Timepieces</title>
+    <meta name="description" content="XIO - Precision redefined. Discover exceptional luxury watches crafted with unparalleled excellence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --gold: #c9a227;
+            --gold-light: #e8d48b;
+            --gold-dark: #a6851f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border: rgba(201, 162, 39, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            border: 1px solid var(--gold);
+            padding: 0.6rem 1.5rem;
+            color: var(--gold) !important;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--bg-primary) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            animation: kenburns 25s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.4) 0%,
+                rgba(10, 10, 10, 0.6) 50%,
+                rgba(10, 10, 10, 0.95) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1.2s ease forwards 0.3s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.5s;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; height: 40px; }
+            50% { opacity: 1; height: 60px; }
+        }
+
+        /* Sections Common */
+        section {
+            padding: 7rem 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Featured Collection */
+        .collection {
+            background: var(--bg-secondary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid transparent;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            border-color: var(--border);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #0d0d0d;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1.2rem;
+            left: 1.2rem;
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            padding: 0.35rem 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.8rem;
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .product-price {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .product-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .product-link:hover {
+            gap: 0.8rem;
+            color: var(--gold-light);
+        }
+
+        .product-link svg {
+            width: 16px;
+            height: 16px;
+            transition: var(--transition);
+        }
+
+        /* Brand Story */
+        .story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--border);
+            pointer-events: none;
+        }
+
+        .story-content .section-eyebrow {
+            text-align: left;
+        }
+
+        .story-content .section-title {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-text {
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .story-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Craftsmanship */
+        .craft {
+            background: var(--bg-secondary);
+        }
+
+        .craft-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .craft-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid transparent;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .craft-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .craft-card:hover {
+            border-color: var(--border);
+            transform: translateY(-5px);
+        }
+
+        .craft-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .craft-card:hover .craft-icon {
+            background: var(--gold);
+            color: var(--bg-primary);
+        }
+
+        .craft-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .craft-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Experience / CTA */
+        .experience {
+            position: relative;
+            padding: 10rem 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .experience-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            filter: brightness(0.3);
+        }
+
+        .experience-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .experience h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .experience p {
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 300px;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 300;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--gold);
+        }
+
+        /* Animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .story {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .story-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .craft-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .story-stats {
+                gap: 1.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            z-index: 1001;
+            padding: 2rem;
+            transition: right 0.4s ease;
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-nav.open {
+            right: 0;
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            float: right;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            clear: both;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">XIO</a>
+            <ul class="nav-links">
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#story">Heritage</a></li>
+                <li><a href="#craft">Craftsmanship</a></li>
+                <li><a href="#experience">Boutique</a></li>
+                <li><a href="#contact" class="nav-cta">Book Appointment</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="closeBtn">✕</button>
+        <ul>
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#story">Heritage</a></li>
+            <li><a href="#craft">Craftsmanship</a></li>
+            <li><a href="#experience">Boutique</a></li>
+            <li><a href="#contact">Book Appointment</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Est. 2024 · Swiss Precision</p>
+            <h1>Time, <span>Perfected</span></h1>
+            <p class="hero-subtitle">Discover the art of horology reimagined. Each XIO timepiece is a masterpiece of engineering, design, and enduring elegance.</p>
+            <div class="hero-buttons">
+                <a href="#collection" class="btn btn-primary">Explore Collection</a>
+                <a href="#story" class="btn btn-outline">Our Heritage</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section class="collection" id="collection">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-eyebrow">The Collection</p>
+                <h2 class="section-title">Signature Timepieces</h2>
+                <p class="section-desc">Meticulously crafted watches that embody precision, luxury, and timeless design.</p>
+            </div>
+            <div class="products-grid">
+                <article class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">New</span>
+                        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=800&auto=format&fit=crop" alt="XIO Horizon Chronograph" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Chronograph</p>
+                        <h3 class="product-name">Horizon</h3>
+                        <p class="product-price">From $12,800</p>
+                        <a href="#" class="product-link">
+                            Discover
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=800&auto=format&fit=crop" alt="XIO Apex Automatic" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Automatic</p>
+                        <h3 class="product-name">Apex</h3>
+                        <p class="product-price">From $9,450</p>
+                        <a href="#" class="product-link">
+                            Discover
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Limited</span>
+                        <img src="https://images.unsplash.com/photo-1609587312208-cea54be969e7?q=80&w=800&auto=format&fit=crop" alt="XIO Legacy Gold" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Dress Watch</p>
+                        <h3 class="product-name">Legacy</h3>
+                        <p class="product-price">From $18,200</p>
+                        <a href="#" class="product-link">
+                            Discover
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?q=80&w=800&auto=format&fit=crop" alt="XIO Nocturne" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Sports</p>
+                        <h3 class="product-name">Nocturne</h3>
+                        <p class="product-price">From $14,600</p>
+                        <a href="#" class="product-link">
+                            Discover
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section id="story">
+        <div class="container">
+            <div class="story">
+                <div class="story-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1000&auto=format&fit=crop" alt="XIO craftsmanship">
+                </div>
+                <div class="story-content fade-in">
+                    <p class="section-eyebrow">Our Heritage</p>
+                    <h2 class="section-title">A Legacy of Precision</h2>
+                    <p class="story-text">Born from a relentless pursuit of perfection, XIO represents the pinnacle of modern horology. Drawing inspiration from the great maisons of Switzerland and the refined elegance of haute couture, every timepiece is a testament to uncompromising craftsmanship.</p>
+                    <p class="story-text">Our master watchmakers combine centuries-old techniques with cutting-edge innovation, creating instruments that measure not just time — but moments that matter.</p>
+                    <div class="story-stats">
+                        <div>
+                            <span class="stat-number">120+</span>
+                            <span class="stat-label">Components</span>
+                        </div>
+                        <div>
+                            <span class="stat-number">72h</span>
+                            <span class="stat-label">Power Reserve</span>
+                        </div>
+                        <div>
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Lifetime Warranty</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship -->
+    <section class="craft" id="craft">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-eyebrow">The Art</p>
+                <h2 class="section-title">Uncompromising Craftsmanship</h2>
+                <p class="section-desc">Every detail is considered. Every component is perfected. This is the XIO standard.</p>
+            </div>
+            <div class="craft-grid">
+                <div class="craft-card">
+                    <div class="craft-icon">◎</div>
+                    <h3>Swiss Movement</h3>
+                    <p>In-house calibrated automatic movements with exceptional accuracy and a power reserve that lasts through the longest journeys.</p>
+                </div>
+                <div class="craft-card">
+                    <div class="craft-icon">◇</div>
+                    <h3>Premium Materials</h3>
+                    <p>18k gold, grade 5 titanium, and sapphire crystal. Only the finest materials meet our exacting standards.</p>
+                </div>
+                <div class="craft-card">
+                    <div class="craft-icon">✦</div>
+                    <h3>Hand Finishing</h3>
+                    <p>Each case and dial undergoes meticulous hand-polishing and decoration by master artisans for a flawless finish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience CTA -->
+    <section class="experience" id="experience">
+        <div class="experience-bg"></div>
+        <div class="experience-content fade-in">
+            <p class="section-eyebrow">Private Experience</p>
+            <h2>Visit Our Boutique</h2>
+            <p>Experience XIO in person. Book a private appointment with our specialists for a personalized consultation and exclusive viewing of our latest creations.</p>
+            <a href="#contact" class="btn btn-primary">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">XIO</a>
+                    <p>Precision redefined. Luxury timepieces crafted for those who demand excellence in every moment.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Twitter">X</a>
+                        <a href="#" aria-label="LinkedIn">IN</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#collection">Collection</a></li>
+                        <li><a href="#story">Heritage</a></li>
+                        <li><a href="#craft">Craftsmanship</a></li>
+                        <li><a href="#">Boutiques</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Book Appointment</a></li>
+                        <li><a href="#">Private Client</a></li>
+                        <li><a href="#">Aftercare</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:concierge@xio.watch">concierge@xio.watch</a></li>
+                        <li><a href="tel:+18005550199">+1 800 555 0199</a></li>
+                        <li><a href="#">Geneva Atelier</a></li>
+                        <li><a href="#">New York Flagship</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 XIO. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function openMenu() {
+            mobileNav.classList.add('open');
+            mobileOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileNav.classList.remove('open');
+            mobileOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Stagger animation for cards
+                    if (entry.target.classList.contains('product-card') || entry.target.classList.contains('craft-card')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    } else {
+                        entry.target.classList.add('visible');
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .product-card, .craft-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth reveal delay for product cards specifically
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.1}s`;
+        });
+
+        const craftCards = document.querySelectorAll('.craft-card');
+        craftCards.forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.15}s`;
+        });
+    </script>
+</body>
+</html>
